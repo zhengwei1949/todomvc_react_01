@@ -115,7 +115,7 @@ class App extends Component {
             {
               viewArr.map((item, index) => {
                 return (
-                  <li className={item.completed === true?'completed':''} className={this.state.editId === index?'editing':''} key={index}>
+                  <li className={(item.completed === true?'completed':'') + ' ' +  (this.state.editId === index?'editing':'')} key={index}>
                     <div className="view">
                       <input className="toggle" type="checkbox" checked={item.completed} onChange={this.handleToggleItem.bind(this,index)}/>
                       <label onDoubleClick={this.toggleEdit.bind(this,index)}>{item.name}</label>
