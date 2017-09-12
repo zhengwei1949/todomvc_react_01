@@ -75,10 +75,13 @@ class App extends Component {
       this.refs.myUl.querySelectorAll('input[type=text]')[index].focus()
     })
   }
-  handleEdit = (e)=>{
+  handleEdit = (index,obj,e)=>{
     e.preventDefault();
+    let myArr = this.state.todos;
+    myArr[index].name = this.refs.myUl.querySelectorAll('input[type=text]')[index].value;
     this.setState({
-      editId:-1
+      editId:-1,
+      todos:myArr
     })
   }
   render() {
@@ -118,7 +121,7 @@ class App extends Component {
                       <label onDoubleClick={this.toggleEdit.bind(this,index)}>{item.name}</label>
                       <button className="destroy" onClick={this.handleDeleteItem.bind(this,index)}></button>
                     </div>
-                    <form onSubmit={this.handleEdit}>
+                    <form onSubmit={this.handleEdit.bind(this,index)}>
                       <input className="edit" type='text' defaultValue={item.name} />
                     </form>
                   </li>
